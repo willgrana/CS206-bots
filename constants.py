@@ -1,15 +1,11 @@
-import numpy as np
+from cmath import pi
 
-SIM_STEPS = 1000
-STEP_SIZE_S = 1/40
-GRAVITY = -9.8
+amplitude_BackLeg = pi/2
+frequency_BackLeg = 5
+phaseOffset_BackLeg = pi/2
 
-amplitudeBack = np.pi/7
-frequencyBack = 8
-phaseOffsetBack = np.pi/2
+amplitude_FrontLeg = pi/2
+frequency_FrontLeg = 10
+phaseOffset_FrontLeg = 0
 
-amplitudeFront = np.pi/7
-frequencyFront = 8
-phaseOffsetFront = 0
-
-
+maxForce = 35

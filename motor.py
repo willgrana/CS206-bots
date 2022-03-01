@@ -1,31 +1,22 @@
-import numpy as np
+from cmath import pi
 import constants as c
 import pyrosim.pyrosim as pyrosim
 import pybullet as p
-
+import numpy
 
 class MOTOR:
-
-    def Prepare_To_Act(self):
-        targetAngles = np.linspace(0,2*np.pi,c.SIM_STEPS)
-        targetAngles = (self.amplitude)*np.sin(self.frequency*targetAngles+self.phaseOffset)
-        return targetAngles
-
-    def Set_Value(self, robotId, i):
-        pyrosim.Set_Motor_For_Joint(bodyIndex=robotId,jointName=self.motorName,controlMode=p.POSITION_CONTROL,targetPosition=self.targetAngles[i],maxForce=50)
+    def __init__(self, jointName):
+        self.jointName = jointName
 
 
-    def __init__(self, motorName):
-        self.motorName = motorName
-        print(motorName)
-        if (motorName == "Torso_FrontLeg"):
-            self.amplitude = c.amplitudeBack
-            self.frequency = c.frequencyBack*2
-            self.phaseOffset = c.phaseOffsetBack
-            self.targetAngles = self.Prepare_To_Act()
-        else:
-            self.amplitude = c.amplitudeBack
-            self.frequency = c.frequencyBack
-            self.phaseOffset = c.phaseOffsetBack
-            self.targetAngles = self.Prepare_To_Act()
-        
+
+
+    def Set_Values(self, robotId, desiredAngle):
+        self.robotId = robotId
+        pyrosim.Set_Motor_For_Joint(
+            bodyIndex=self.robotId,
+            jointName=self.jointName,
+            controlMode=p.POSITION_CONTROL,
+            targetPosition=desiredAngle,
+            maxForce=c.maxForce)
+
