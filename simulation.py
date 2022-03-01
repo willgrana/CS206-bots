@@ -29,7 +29,7 @@ class SIMULATION:
 
     def Save_Values(self):
         for key in self.robot.sensors:
-            np.save("data/backLegSensorValues.npy", self.robot.sensors[key])
+            np.save("data/SensorValues" + str(key)+ ".npy", self.robot.sensors[key])
 
     def __del__(self):
 

@@ -17,8 +17,15 @@ class MOTOR:
 
     def __init__(self, motorName):
         self.motorName = motorName
-        self.amplitude = c.amplitudeBack
-        self.frequency = c.frequencyBack
-        self.phaseOffset = c.phaseOffsetBack
-        self.targetAngles = self.Prepare_To_Act()
+        print(motorName)
+        if (motorName == "Torso_FrontLeg"):
+            self.amplitude = c.amplitudeBack
+            self.frequency = c.frequencyBack*2
+            self.phaseOffset = c.phaseOffsetBack
+            self.targetAngles = self.Prepare_To_Act()
+        else:
+            self.amplitude = c.amplitudeBack
+            self.frequency = c.frequencyBack
+            self.phaseOffset = c.phaseOffsetBack
+            self.targetAngles = self.Prepare_To_Act()
         

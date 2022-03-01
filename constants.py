@@ -1,7 +1,7 @@
 import numpy as np
 
 SIM_STEPS = 1000
-STEP_SIZE_S = 1/100
+STEP_SIZE_S = 1/40
 GRAVITY = -9.8
 
 amplitudeBack = np.pi/7

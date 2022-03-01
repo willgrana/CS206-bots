@@ -20,11 +20,13 @@ class ROBOT:
     def Prepare_To_Act(self):
         self.motors = {}
         for motorName in pyrosim.jointNamesToIndices:
+            #print(motorName)
             self.motors[motorName] = MOTOR(motorName)
 
     def Sense(self,i):
         for key in self.sensors:
             self.sensors[key].Get_Value(i)
+            #print(self.sensors[key].Get_Value(i))
         
     def Act(self,i):
         for key in self.motors:

@@ -11,6 +11,7 @@ from simulation import SIMULATION
 
 simulation = SIMULATION()
 simulation.Run()
+simulation.Save_Values()
 #amplitudeBack = np.pi/7
 #frequencyBack = 8
 #phaseOffsetBack = np.pi/2
