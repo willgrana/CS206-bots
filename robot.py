@@ -12,6 +12,7 @@ class ROBOT:
         self.Prepare_To_Sense()
         self.Prepare_To_Act()
         self.nn = NEURAL_NETWORK("brain.nndf")
+        self.outfile = open("fitness.txt", 'w')
 
     def Prepare_To_Sense(self):
         self.sensors = {}
@@ -39,3 +40,11 @@ class ROBOT:
     def Think(self):
         self.nn.Update()
         self.nn.Print()
+
+    def Get_Fitness(self):
+        stateOfLinkZero = p.getLinkState(self.robotId,0)[0]
+        xCoordinateOfLinkZero = stateOfLinkZero[0]
+        #print(xCoordinateOfLinkZero)
+        self.outfile.write(str(xCoordinateOfLinkZero))
+        #exit()
+        
