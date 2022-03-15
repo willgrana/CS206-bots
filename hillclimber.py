@@ -24,7 +24,7 @@ class HILL_CLIMBER:
 
     def Select(self):
         
-        if self.child.fitness<self.parent.fitness:
+        if abs(self.child.fitness)>abs(self.parent.fitness):
             self.parent = self.child
         pass
 

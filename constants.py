@@ -10,4 +10,4 @@ phaseOffset_FrontLeg = 0
 
 maxForce = 50
 
-numberOfGenerations = 10
+numberOfGenerations = 50
