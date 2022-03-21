@@ -7,6 +7,7 @@ import robot
 
 class SIMULATION:
     def __init__(self, G):
+        self.directOrGUI = G
         if G=="DIRECT":
             self.physicsClient = p.connect(p.DIRECT)
         else:
@@ -22,7 +23,8 @@ class SIMULATION:
     def run(self):
         for i in range(1500):
             #print(self.Get_Fitness())
-            time.sleep(1 / 240)
+            if self.directOrGUI == "GUI":
+                time.sleep(1 / 240)
             p.stepSimulation()
             self.robot.Sense(i)
             self.robot.Think()

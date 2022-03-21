@@ -24,7 +24,7 @@ class HILL_CLIMBER:
 
     def Select(self):
         
-        if abs(self.child.fitness)>abs(self.parent.fitness):
+        if self.child.fitness<self.parent.fitness:
             self.parent = self.child
         pass
 
@@ -42,6 +42,7 @@ class HILL_CLIMBER:
         self.parent.Evaluate(G)
         G = "DIRECT"
         for currentGeneration in range(c.numberOfGenerations):
+            print(currentGeneration)
             self.Evolve_For_One_Generation(G)
         pass
     
