@@ -11,3 +11,5 @@ phaseOffset_FrontLeg = 0
 maxForce = 100
 
 numberOfGenerations = 10
+
+populationSize = 10
