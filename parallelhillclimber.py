@@ -21,6 +21,7 @@ class PARALLEL_HILL_CLIMBER:
     def Show_Best(self):
         self.Select()
         best_fit = 10000.00
+        best = self.parents[0]
         for key in self.parents:
             if self.parents[key].fitness<best_fit:
                 best = copy.deepcopy(self.parents[key])

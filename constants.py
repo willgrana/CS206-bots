@@ -8,13 +8,13 @@ amplitude_FrontLeg = pi/2
 frequency_FrontLeg = 10
 phaseOffset_FrontLeg = 0
 
-maxForce = 14
+maxForce = 50
 
-numberOfGenerations = 300
+numberOfGenerations = 10
 
-populationSize = 3
+populationSize = 10
 
 numSensorNeurons = 4
 numMotorNeurons = 9
 
-motorJointRange = 0.2
+motorJointRange = .5

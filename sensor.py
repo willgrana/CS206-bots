@@ -10,9 +10,10 @@ class SENSOR:
     def Get_Value(self, timeStep):
         self.timeStep = timeStep
         self.values[self.timeStep] = pyrosim.Get_Touch_Sensor_Value_For_Link(self.linkName)
+        return self.values[self.timeStep]
         #if(self.timeStep == 999):
             #print(self.values)
 
     def Save_Values(self):
         self.pathSaveSensors = 'data/sensorsData.npy'
-        numpy.save(self.pathSaveSensors, self.values)
+        numpy.save(self.pathSaveSensors, self.values)   
