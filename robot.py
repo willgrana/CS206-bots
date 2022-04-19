@@ -33,11 +33,25 @@ class ROBOT:
         legs = np.array([0,0,0,0])
         j = 0
         z = 0
+        k = 0
+        body = 2
         #print(self.sensors)
         for i in self.sensors:
             self.sensor = self.sensors[i]
+            if z==1:
+                z+=1
+                continue
+            else:
+                x = p.getLinkState(self.robotId,k)
+                x = x[0][0]
+                #print(x)
+                if x<(-4.5) and x>(-9.5):
+                    body = 2
+                else:
+                    body = 1
+                k+=1
             #self.sensor.Get_Value(self.timeStep)
-            val = self.sensor.Get_Value(self.timeStep)
+            val = self.sensor.Get_Value(self.timeStep, body)
             self.timeOnGround += val+1
             if z==2 or z==4 or z==6 or z==8:
                 legs[j] = val
@@ -68,18 +82,38 @@ class ROBOT:
                 self.motors[jointName].Set_Values(self.robotId, desiredAngle)
 
     def Think(self):
-        self.nn.Update()
+        z = 0
+        j = 0
+        body_arr = [0,0,0,0,0,0,0,0]
+        for i in self.sensors:
+            self.sensor = self.sensors[i]
+            if z==1:
+                z+=1
+                continue
+            else:
+                x = p.getLinkState(self.robotId,j)
+                x = x[0][0]
+                #print(x)
+                if x<(-4.5) and x>(-9.5):
+                    body_arr[j] = 2
+                else:
+                    body_arr[j] = 1
+                j+=1
+            z+=1
+        self.nn.Update(body_arr)
         self.nn.Print()
 
     def Get_Fitness(self):
-        #stateOfLinkZero = p.getLinkState(self.robotId,0)[0]
-        #xCoordinateOfLinkZero = stateOfLinkZero[0]
+        stateOfLinkZero = p.getLinkState(self.robotId,0)[0]
+        xCoordinateOfLinkZero = stateOfLinkZero[0]
         #print(type(xCoordinateOfLinkZero))
         #print(xCoordinateOfLinkZero)
         #fitness = self.timeOnGround - (3000*np.amax(self.z))
         #fitness = -10*np.amax(self.z) - (self.timeOnGround/500)
         #print(self.legsTogether) (-1000*np.amax(self.z)) 
-        fitness = -1.5*self.legsTogether - 200*np.amax(self.z)
+        #fitness = -1.5*self.legsTogether - 400*np.mean(self.z)
+        print(self.legsTogether)
+        fitness = self.timeOnGround + -3*self.legsTogether + 125*xCoordinateOfLinkZero - 1000*np.amax(self.z)
         self.outfile.write(str(fitness))
         os.system("mv tmp"+str(self.solutionID)+".txt fitness"+str(self.solutionID)+".txt")
         self.outfile.close()

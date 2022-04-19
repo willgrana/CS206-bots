@@ -5,7 +5,7 @@ class MASS_SDF:
 
     def __init__(self):
 
-        self.string =  '<mass>1.0</mass>'
+        self.string =  '<mass>10000.0</mass>'
 
         self.depth = 4
 
