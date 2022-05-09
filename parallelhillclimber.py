@@ -13,6 +13,10 @@ class PARALLEL_HILL_CLIMBER:
         for i in range(c.populationSize):
             self.parents[i] = solution.SOLUTION(self.nextAvailableID)
             self.nextAvailableID+=1
+        self.fit1 = open("fit1.txt", 'w')
+        self.fit2 = open("fit2.txt", 'w')
+        self.fit3 = open("fit3.txt", 'w')
+        self.fit4 = open("fit4.txt", 'w')
 
     def Print(self):
         for key in self.parents:
@@ -44,9 +48,19 @@ class PARALLEL_HILL_CLIMBER:
         pass
 
     def Select(self):
+        i = 1
         for key in self.parents:
             if self.children[key].fitness<self.parents[key].fitness:
                 self.parents[key] = self.children[key]
+            if i==1:
+                self.fit1.write(str(self.children[key].fitness)+'\n')
+            if i==2:
+                self.fit2.write(str(self.children[key].fitness)+'\n')
+            if i==3:
+                self.fit3.write(str(self.children[key].fitness)+'\n')
+            if i==4:
+                self.fit4.write(str(self.children[key].fitness)+'\n')
+            i+=1
         pass
 
     def Evaluate(self, G, solutions):

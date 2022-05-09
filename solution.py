@@ -7,7 +7,7 @@ import constants as c
 
 length = 5
 width = 50
-height = .5
+height = .4
 
 
 class SOLUTION:
@@ -23,7 +23,7 @@ class SOLUTION:
     def Mutate(self):
         randrow = random.randint(0,c.numSensorNeurons-1)
         randcol = random.randint(0,c.numMotorNeurons-1)
-        self.weights[randrow][randcol] = random.random()*2 - 1
+        self.weights[randrow][randcol] = (random.random()*2 - 1)*c.learningRate
     
     def Create_World(self):
         pyrosim.Start_SDF("world.sdf")
